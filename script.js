@@ -1,19 +1,19 @@
 const productsArray = []
 
-const ProductTypes = [
+const productTypes = [
     REMERA = "REMERA", 
     VESTIDO = "VESTIDO", 
     CALZADO = "CALZADO"
     ]
 
-const ProductColors = [
+const productColors = [
     RED = "ROJO", 
     BLUE = "AZUL", 
     BLACK = "NEGRO",
     WHITE = "BLANCO"
     ]
 
-const ProductSizes = [
+const productSizes = [
     S = "S", 
     M = "M", 
     L = "L",
@@ -34,39 +34,28 @@ class Product {
 
 const addProduct = (name, type, price, sizes, colors) => productsArray.push(new Product(name, type, price, sizes, colors))
 
-const showProduct = (id, objArray) => {
-    obj = objArray[id]
-
-    let string = `Nombre: ${obj.name}\n`
-    string += `Precio: ${obj.price}$\n`
-    string += `Talles disp: ${obj.sizes}\n`
-    string += `Colores disp: ${obj.colors}\n`
+const showProduct = (product) => {
+    let string = `Nombre: ${product.name}\n`
+    string += `Precio: ${product.price}$\n`
+    string += `Talles disp: ${product.sizes}\n`
+    string += `Colores disp: ${product.colors}\n`
     alert(string)
 }
 
-const filterProduct = (type) => {
-    let objArray = []
-
-    for(let obj of productsArray) {
-        if(obj.type == type) {
-            objArray.push(obj)
-        }
-    }
-
-    return objArray
-}
-
+const filterProduct = (filter, prop) => productsArray.filter((product) => {
+    productProp = product[prop].toString().toLowerCase()
+    return productProp.includes(filter.toLowerCase()) 
+})
 
 const createMainMenu = (objArray) => {
     let string = "Eliga una opcion:\n\n"
-    let i = 0
 
-    for(let obj of objArray) {
-        i++
-        string += `${i}. [${obj.name}, Precio: ${obj.price}$]\n`
-    }
+    objArray.forEach((obj, i) => string += `${i+1}. [${obj.name}, Precio: ${obj.price}$]\n`)
     
-    string += "\n\nIngrese /filtrar para filtrar por categoria"
+    string += "\n\nIngrese /cat para filtrar por categoria"
+    string += "\nIngrese /color para filtrar por color"
+    string += "\nIngrese /talle para filtrar por talle"
+    string += "\nIngrese /nombre para buscar por nombre"
 
     return string
 }
@@ -74,33 +63,19 @@ const createMainMenu = (objArray) => {
 const handleMainMenu = (key, objArray) => {
     let id = key-1
 
-    if(id >= objArray.length || id < 0 || isNaN(key)) {
+    if(!objArray[id]) {
         return
     }
-    
-    showProduct(id, objArray)
+
+    showProduct(objArray[id])
 }
 
-const createFilterMenu = () => {
+const createFilterMenu = (array) => {
     let string = "Eliga una opcion:\n\n"
-    let i = 0
 
-    for(let str of ProductTypes) {
-        string += `${i+1}. Filtrar por ${str}\n`
-        i++
-    }
+    array.forEach((e, i) => string += `${i+1}. ${e}\n`)
 
     return string
-}
-
-const handleFilterMenu = (key) => {
-    let id = key-1
-
-    if(id >= ProductTypes.length || id < 0 || isNaN(key)) {
-        return
-    }
-
-    return filterProduct(ProductTypes[id])
 }
 
 const initSimulator = () => {
@@ -143,19 +118,64 @@ const initSimulator = () => {
 }
 
 const startSimulator = (menu, objArray) => {
-    let input = prompt(menu)
+    let key = prompt(menu)
     
-    if(input == "/filtrar") {
-        menu = createFilterMenu()
-        input = prompt(menu)
+    switch(key) {
+        case "/cat": {
+            menu = createFilterMenu(productTypes)
+            key = parseInt(prompt(menu))
 
-        objArray = handleFilterMenu(parseInt(input))
+            objArray = filterProduct(productTypes[key-1], "type")
 
-        menu = createMainMenu(objArray)
-        startSimulator(menu, objArray)
-    }
-    else {
-        handleMainMenu(parseInt(input), objArray)
+            menu = createMainMenu(objArray)
+            startSimulator(menu, objArray)
+            break
+        }
+        case "/color": {
+            menu = createFilterMenu(productColors)
+            key = parseInt(prompt(menu))
+            
+            objArray = filterProduct(productColors[key-1], "colors")
+
+            menu = createMainMenu(objArray)
+            startSimulator(menu, objArray)
+            break
+        }
+        case "/talle": {
+            menu = createFilterMenu(productSizes)
+            key = parseInt(prompt(menu))
+            
+            objArray = filterProduct(productSizes[key-1], "sizes")
+
+            menu = createMainMenu(objArray)
+            startSimulator(menu, objArray)
+            break
+        }
+        case "/nombre": {
+            menu = "Buscar"
+            key = prompt(menu)
+            
+            objArray = filterProduct(key, "name")
+            
+            if(objArray == ""){
+                alert("Ningun resultado encontrado")
+                break
+            }
+
+            menu = createMainMenu(objArray)
+            startSimulator(menu, objArray)
+            break
+        }
+        default: {
+            key = parseInt(key)-1
+            if(!objArray[key]) {
+                alert("Invalido")
+                return
+            }
+        
+            showProduct(objArray[key])
+            break
+        }
     }
 }
 
