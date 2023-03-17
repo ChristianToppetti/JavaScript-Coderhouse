@@ -30,17 +30,20 @@ class Product {
         this.sizes = sizes
         this.colors = colors
     }
+    showProduct() {
+        let string = `Nombre: ${this.name}\n`
+        string += `Precio: ${this.price}$\n`
+        string += `Talles disp: ${this.sizes}\n`
+        string += `Colores disp: ${this.colors}\n`
+        alert(string)
+    }
+    setDiscount(percent) {
+        let newPrice = this.price * (percent / 100)
+        this.price = Math.round(this.price - newPrice)
+    }
 }
 
 const addProduct = (name, type, price, sizes, colors) => productsArray.push(new Product(name, type, price, sizes, colors))
-
-const showProduct = (product) => {
-    let string = `Nombre: ${product.name}\n`
-    string += `Precio: ${product.price}$\n`
-    string += `Talles disp: ${product.sizes}\n`
-    string += `Colores disp: ${product.colors}\n`
-    alert(string)
-}
 
 const filterProduct = (filter, prop) => productsArray.filter((product) => {
     productProp = product[prop].toString().toLowerCase()
@@ -56,18 +59,9 @@ const createMainMenu = (objArray) => {
     string += "\nIngrese /color para filtrar por color"
     string += "\nIngrese /talle para filtrar por talle"
     string += "\nIngrese /nombre para buscar por nombre"
+    string += "\nIngrese /desc para setear un descuento de 90% (Prueba de concepto)"
 
     return string
-}
-
-const handleMainMenu = (key, objArray) => {
-    let id = key-1
-
-    if(!objArray[id]) {
-        return
-    }
-
-    showProduct(objArray[id])
 }
 
 const createFilterMenu = (array) => {
@@ -79,7 +73,6 @@ const createFilterMenu = (array) => {
 }
 
 const initSimulator = () => {
-
     let sizes = [L, X, XL]
     let colors = [WHITE, BLACK]
     addProduct("Remera Lisa", REMERA, 1234.1, sizes, colors)
@@ -123,9 +116,9 @@ const startSimulator = (menu, objArray) => {
     switch(key) {
         case "/cat": {
             menu = createFilterMenu(productTypes)
-            key = parseInt(prompt(menu))
+            key = parseInt(prompt(menu)-1)
 
-            objArray = filterProduct(productTypes[key-1], "type")
+            objArray = filterProduct(productTypes[key], "type")
 
             menu = createMainMenu(objArray)
             startSimulator(menu, objArray)
@@ -133,9 +126,9 @@ const startSimulator = (menu, objArray) => {
         }
         case "/color": {
             menu = createFilterMenu(productColors)
-            key = parseInt(prompt(menu))
+            key = parseInt(prompt(menu)-1)
             
-            objArray = filterProduct(productColors[key-1], "colors")
+            objArray = filterProduct(productColors[key], "colors")
 
             menu = createMainMenu(objArray)
             startSimulator(menu, objArray)
@@ -143,9 +136,9 @@ const startSimulator = (menu, objArray) => {
         }
         case "/talle": {
             menu = createFilterMenu(productSizes)
-            key = parseInt(prompt(menu))
+            key = parseInt(prompt(menu)-1)
             
-            objArray = filterProduct(productSizes[key-1], "sizes")
+            objArray = filterProduct(productSizes[key], "sizes")
 
             menu = createMainMenu(objArray)
             startSimulator(menu, objArray)
@@ -166,14 +159,24 @@ const startSimulator = (menu, objArray) => {
             startSimulator(menu, objArray)
             break
         }
+        case "/desc": {
+            for(product of productsArray) {
+                product.setDiscount(90)
+            }
+
+            menu = createMainMenu(productsArray)
+            startSimulator(menu, productsArray)
+            break
+        }
         default: {
             key = parseInt(key)-1
+
             if(!objArray[key]) {
                 alert("Invalido")
                 return
             }
         
-            showProduct(objArray[key])
+            objArray[key].showProduct()
             break
         }
     }
