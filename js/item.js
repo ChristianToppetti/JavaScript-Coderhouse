@@ -58,13 +58,9 @@ const createItemChoices = (contId, choiceTitle, itemChoices, currentChoice, even
 
     div.id = `index${choice}`
 
-    if(optCallback) {
-      optCallback(div, choice);
-    }
+    optCallback && optCallback(div, choice)
 
-    if(choice === currentChoice) {
-      div.className = "selected"
-    }
+    choice === currentChoice && (div.className = "selected")
 
     itemChoicesCont.append(div)
     eventCallback(div)
@@ -93,9 +89,7 @@ const renderColor = (element, color) => {
   }
 }
 
-const renderSize = (element, size) => {
-  element.innerHTML = size
-}
+const renderSize = (element, size) => element.innerHTML = size
 
 const createItemInfo = () => {
   itemInfoCont.innerHTML = `<h2>${storeageItem.name.toUpperCase()}</h2>
@@ -104,26 +98,16 @@ const createItemInfo = () => {
   <div id="itemColorsCont" class="main-item__info__colors"></div>
   <div id="itemSizesCont" class="main-item__info__sizes"></div>
 
-  <input class="buttons" type="button" value="AGREGAR AL CARRITO">   
+  <input id="addToCart" class="buttons" type="button" value="AGREGAR AL CARRITO">   
 
   <div class="separator"></div>`
 }
 
-const getSelectedColor = () => {
-  return sessionStorage.getItem("SELECTEDCOLOR")
-}
+const getSelectedColor = () => sessionStorage.getItem("SELECTEDCOLOR")
+const getSelectedSize = () => sessionStorage.getItem("SELECTEDSIZE")
 
-const getSelectedSize = () => {
-  return sessionStorage.getItem("SELECTEDSIZE")
-}
-
-const setSelectedColor = (color) => {
-  sessionStorage.setItem("SELECTEDCOLOR", color)
-}
-
-const setSelectedSize = (size) => {
-  sessionStorage.setItem("SELECTEDSIZE", size)
-}
+const setSelectedColor = (color) => sessionStorage.setItem("SELECTEDCOLOR", color)
+const setSelectedSize = (size) => sessionStorage.setItem("SELECTEDSIZE", size)
 
 const thumbnailClickEvent = (element) => {
   element.addEventListener("click", () => {
@@ -157,6 +141,20 @@ const sizeClickEvent = (element) => {
   })
 }
 
+const btnAddToCartEvent = () => {
+  document.getElementById("addToCart").addEventListener("click", () => {
+    let product = {
+      name: storeageItem.name,
+      price: storeageItem.price,
+      size: getSelectedSize(),
+      color: getSelectedColor()
+    }
+
+    console.log(`SIMULADOR: Producto a Agregar: ${JSON.stringify(product)}`)
+  })
+}
+
+
 window.addEventListener("load", () => {
   setSelectedColor(storeageItem.colors[0])
   setSelectedSize(storeageItem.sizes[0])
@@ -168,5 +166,7 @@ window.addEventListener("load", () => {
   createItemPaymentInf()
   createItemChoices("itemColorsCont", "COLOR", storeageItem.colors, getSelectedColor(), colorClickEvent, renderColor)
   createItemChoices("itemSizesCont", "TALLE", storeageItem.sizes, getSelectedSize(), sizeClickEvent, renderSize)
+
+  btnAddToCartEvent()
 })
 

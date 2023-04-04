@@ -78,9 +78,7 @@ const showItems = () => {
         return tags.toLowerCase().includes(`${activeFilter.toLowerCase()}#`) 
       })
 
-      if(validProduct) {
-        createShopItem(itemsCont, product)
-      } 
+      validProduct && createShopItem(itemsCont, product)
     }
     else {
       createShopItem(itemsCont, product)
@@ -96,15 +94,15 @@ const databaseSimulator = () => {
 
   addProduct("Vestido Rayado", types[1], (9000.99),sizes, colors, "vestidorayado")
 
-  for(let i=1; i <= 10; i++) {
+  for(let i=1; i <= 9; i++) {
     let name = `Producto ${i}`
     let imgFolder = `Test${i}`
 
     addProduct(name, 
     types[Math.floor(Math.random() * types.length)], 
     (1234.1+i), 
-    [sizes[Math.floor(Math.random() * sizes.length)], sizes[Math.floor(Math.random() * sizes.length)]], 
-    [colors[Math.floor(Math.random() * colors.length)], colors[Math.floor(Math.random() * colors.length)]],
+    [sizes[Math.floor(Math.random() * sizes.length)]], 
+    [colors[Math.floor(Math.random() * colors.length)]],
     imgFolder)
   }
 }
