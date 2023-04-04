@@ -30,7 +30,7 @@ const createShopItem = (contHtml, obj) => {
     <h3 class="shopitem__nametag">${obj.name.toUpperCase().replace("tag", "")}</h3>
 
     <div class="shopitem__img">
-        <img src="../multimedia/Items/${obj.imgfolder}/item0.webp" alt="IMG">
+        <img src="../multimedia/Items/${obj.imgfolder}/Item0.webp" alt="IMG">
         <a id="${obj.id}" class="shopitem__img__btn" href="item.html">VER MAS</a>
     </div>
     

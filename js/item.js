@@ -11,7 +11,7 @@ const createThumbnails = () => {
   
   for(let i=0; i < maxThumbnails; i++) {
     let img = document.createElement("img")
-    img.src = `../multimedia/Items/${storeageItem.imgfolder}/item${i}.webp`
+    img.src = `../multimedia/Items/${storeageItem.imgfolder}/Item${i}.webp`
     img.alt = "IMG"
 
     itemThumbnailsCont.append(img)
