@@ -160,7 +160,7 @@ window.addEventListener("load", () => {
   setSelectedSize(storeageItem.sizes[0])
 
   createThumbnails()
-  let path = `../multimedia/Items/${storeageItem.imgfolder}/item0.webp`
+  let path = `../multimedia/Items/${storeageItem.imgfolder}/Item0.webp`
   createMainImg(path)
   createItemInfo()
   createItemPaymentInf()
