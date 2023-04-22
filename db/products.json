@@ -1,0 +1,17 @@
+[{
+    "name":"Vestido Rayado",
+    "type":"VESTIDO",
+    "price":9000.99,
+    "sizes":["S","M","L","X","XL","XLL"],
+    "colors":["ROJO","AZUL","NEGRO","BLANCO"],
+    "imgFolder":"vestidorayado",
+    "extraTags":["proyecto final"]
+},{
+    "name":"Zapas Rayado",
+    "type":"CALZADO",
+    "price":9000.99,
+    "sizes":["S","M","L","X","XL","XLL"],
+    "colors":["ROJO","AZUL","NEGRO","BLANCO"],
+    "imgFolder":"Test4",
+    "extraTags":[""]
+}]

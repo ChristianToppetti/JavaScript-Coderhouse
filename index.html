@@ -1,12 +1,194 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a class="simulacro" href="./pages/tienda.html">EMPEZAR SIMULACRO</a>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Selección de calzados, vestidos y remeras.">
+        <meta name="keywords" content="PRODUCTOS, ROPA DE MUJER, MODA FEMENINA, VESTIDOS, REMERAS, CALZADOS, TIENDA EN LINEA, ROPA EN LINEA, ENVIO">
+        <title>Productos</title>
+
+        <link rel="shortcut icon" href="./multimedia/favicon.png">
+        <link rel="stylesheet" href="./css/compilado.css">
+
+        <link href='https://fonts.googleapis.com/css?family=Comforter' rel='stylesheet'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script defer src="./js/vars.js"></script>
+        <script defer src="./js/classes.js"></script>
+        <script defer src="./js/user.js"></script>
+        <script defer src="./js/tienda.js"></script>
+        <script defer src="./js/productOverlay.js"></script>
+        <script defer src="./js/events.js"></script>
+    </head>
+
+    <body>
+        <div class="grid">
+            <header class="header">
+                <a class="header__logo" href="../index.html">
+                    <h1>INDRA</h1>
+                </a>
+
+                <div id="btnAccount" class="header__account buttons" href="#">
+                    <i class="material-icons">person</i>
+                    <span id="btnAccountText">ACCEDER</span>
+                    
+                    <div id="authOverlay" class="header__account__overlay displaynone">
+                        <div id="authFormCont" class="header__account__overlaycont shadow">
+                        
+                        </div>
+                    </div>
+                </div> 
+
+                <div id="btnShowCartOverlay" class="header__cart buttons">
+                    <i class="material-icons">shopping_cart</i>
+                    <span>CARRITO</span>
+                    <div id="cartOverlay" class="header__cart__overlay displaynone">
+                        <input id="btnHideCartOverlay" class="header__cart__overlay__button buttons material-icons" type="button" value="&#xe14c;">
+                        <div id="cartItemsCont" class="header__cart__overlay__itemscont">
+                            <!-- CART ITEMS -->
+                        </div>                        
+                        <input id="btnBuyCart" class="header__cart__overlay__button buttons" type="button" value="CONTINUAR CON LA COMPRA">
+                    </div>
+                </div> 
+            </header>
+
+            <nav class="nav shadow">
+                <div class="nav__navitems">
+                    <a class="textbtn" href="#">INICIO</a>
+                    <a class="textbtn textbtn--selected" href="#">PRODUCTOS</a>
+                    <a class="textbtn" href="#">CONTACTO</a>
+                    <a class="textbtn" href="#">POLITICA DE DEVOLUCION</a>
+                </div>
+                <div class="nav__navitems__mobile">   <!-- NAV para mobile -->
+                    <a class="textbtn" href="#">
+                        <i class="material-icons">home</i>
+                        <p>INICIO</p>  
+                    </a>
+
+                    <a class="textbtn textbtn--selected" href="#">
+                        <i class="material-icons">apps</i>
+                        <p>PRODUCTOS</p>    
+                    </a>
+
+                    <a class="textbtn" href="#">
+                        <i class="material-icons">shopping_cart</i>
+                        <p>CARRITO</p> 
+                    </a>
+                </div>
+            </nav>
+            
+            <main class="main-tienda">
+                <section class="main-tienda__sidebar">
+                    <div class="main-tienda__sidebar__stickcont">
+                        <button class="main-tienda__sidebar__stickcont__btn buttons"><p>Filtros</p><i class="material-icons">keyboard_arrow_down</i></button> 
+                        <div id="sidebarMenu" class="main-tienda__sidebar__stickcont__filters">
+                            <!-- CHECKBOX FILTERS -->
+                        </div>
+                    </div>
+                </section>
+                
+                <h2 class="separator">PRODUCTOS</h2>
+                
+                <section id="shopItemsCont" class="main-tienda__shopitems">
+                    <!-- SHOP ITEMS -->
+                </section>
+
+                <section id="productOverlay" class="main-tienda__product displaynone">
+                    <div id="exitOverlayMobile" class="main-tienda__product__mobileback">
+                        <
+                    </div>
+                    <div id="productCont" class="card">
+                        <div class="main-tienda__product__gallery">
+                            <div id="itemThumbnailsCont" class="main-tienda__product__gallery__thumbnails">
+                                <!-- THUMBNAILS -->
+                            </div>
+                            <div id="itemImgCont" class="main-tienda__product__gallery__itemimg">
+                                <!-- MAIN IMG -->
+                            </div>
+                        </div>
+
+                        <div id="itemInfoCont" class="main-tienda__product__info">
+                            <!-- INFO -->
+                        </div>
+                    </div>
+                </section>
+            </main> 
+
+            <footer class="footer">
+                <section>  <!-- NAV -->
+                    <h4 class="separator">NAVEGACION</h4>
+
+                    <ul class="footer__itemscont">
+                        <li>
+                            <a class="textbtn" href="#">
+                                <i class="material-icons">home</i>
+                                <p>INICIO</p>  
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="textbtn textbtn--selected" href="#">
+                                <i class="material-icons">apps</i>
+                                <p>PRODUCTOS</p>    
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="textbtn" href="#">
+                                <i class="material-icons">contact_phone</i>
+                                <p>CONTACTO</p> 
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="textbtn" href="devolucion.html">
+                                <i class="material-icons">library_books</i>
+                                <p>POLITICAS DE DEVOLUCION</p> 
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section> <!-- CONTACTO -->
+                    <h4 class="separator">CONTACTO</h4>
+
+                    <ul class="footer__itemscont">
+                        <li><i class="material-icons">phone</i>+54 9 11 XXXX-XXXX</li>
+                        <li><i class="material-icons">email</i>consulta@indraropa.com</li>
+                        <li><img src="./multimedia/icons/instagram.png" alt="INS"><a href="http://instagram.com" target="_blank" rel="noopener noreferrer">@indraropa</a></li>
+                        <li><img src="./multimedia/icons/facebook.png" alt="FACE"><a href="http://facebook.com" target="_blank" rel="noopener noreferrer">indraropa</a></li>
+                    </ul>
+                </section>
+
+                <section> <!-- METODOS DE PAGO  -->
+                    <h4 class="separator">METODOS DE PAGO</h4>
+
+                    <div class="footer__itemscont">
+                        <img src="./multimedia/icons/visa.png" alt="visa">
+                        <img src="./multimedia/icons/mastercard.png" alt="mastercard">
+                        <img src="./multimedia/icons/tarjetanaranja.png" alt="tarjeta-naranja">
+                        <img src="./multimedia/icons/mercadopago.png" alt="mercadopago">
+                        <img src="./multimedia/icons/pagofacil.png" alt="pagofacil">
+                        <img src="./multimedia/icons/rapipago.png" alt="rapipago>">
+                    </div>
+
+                </section>
+
+                <section> <!-- NEWSLETTER -->
+                    <h4 class="separator">NEWSLETTER</h4>
+
+                    <form class="footer__itemscont" action="#" method="GET" enctype="text/plain">
+                        <fieldset class="footer_newsletter">
+                            <legend>Suscribite a nuestro Newsettler</legend>
+                            <input placeholder="Nombre" type="text" name="name" id="name" required>
+                            <input placeholder="Correo Electronico" type="email" name="email" id="email" required>
+                            <input class="buttons" type="submit" value="Suscribirse">
+                        </fieldset>
+                    </form>  
+                </section>
+            </footer>    
+        </div>
+    </body>
 </html>

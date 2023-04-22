@@ -1,0 +1,16 @@
+[
+    {"tag":"Proyecto Final","group":"CODERHOUSE","itsRadio":true},
+    {"tag":"Remera","group":"PRENDA","itsRadio":true},
+    {"tag":"Vestido","group":"PRENDA","itsRadio":true},
+    {"tag":"Calzado","group":"PRENDA","itsRadio":true},
+    {"tag":"S","group":"TALLE","itsRadio":true},
+    {"tag":"M","group":"TALLE","itsRadio":true},
+    {"tag":"L","group":"TALLE","itsRadio":true},
+    {"tag":"X","group":"TALLE","itsRadio":true},
+    {"tag":"XL","group":"TALLE","itsRadio":true},
+    {"tag":"XLL","group":"TALLE","itsRadio":true},
+    {"tag":"Rojo","group":"COLORES","itsRadio":true},
+    {"tag":"Negro","group":"COLORES","itsRadio":true},
+    {"tag":"Azul","group":"COLORES","itsRadio":true},
+    {"tag":"Blanco","group":"COLORES","itsRadio":true}
+]
