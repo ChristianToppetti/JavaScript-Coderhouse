@@ -3,7 +3,7 @@ const productOverlayThumbnailEvent = (element) => {
         createMainImg(element.src)
     })
 }
-  
+ 
 const productOverlayColorEvent = (element, colors) => {
     element.addEventListener("click", (event) => {
         if(event.target.className.includes("selected")) { 
@@ -38,8 +38,8 @@ const btnAddToCartEvent = (ojbProduct) => {
             chosenSize: getSelectedSize(),
             chosenColor: getSelectedColor()
         }
-
-        logedUser ? logedUser.addToCart(cartItem) : alert("Inicia sesion para agregar productos al carrito")
+        let userName = logedUser.userName
+        isUserLoged() ? logedUser.addToCart(cartItem) : swal("", "Inicia sesion para agregar productos al carrito", "info")
     })
 }
 
@@ -54,21 +54,21 @@ const listenAuthEvents = (login) => {
 
         let inputAccUser = document.getElementById("accUser").value
         let inputAccPassword = document.getElementById("accPassword").value
+        let rememberCheckbox = document.getElementById("cbRememberLogin").checked
 
         if(login) {
-            if(loginAccount(inputAccUser, inputAccPassword)) {
+            if(loginAccount(inputAccUser, inputAccPassword, rememberCheckbox)) {
                 toggleDisplayNone(authOverlay)
-                alert("Logeado con exito")
-                document.getElementById("btnAccountText").textContent = "LOGEADO"
+                swal("Bienvenido!", "Logeado con exito!", "success");
             } else {
-                alert("Datos no validos")
+                swal("Hubo un problema!", "Datos no validos", "error");
             }
         } 
         else {
             let inputAccRepeatPassword = document.getElementById("accRepeatPassword").value
             let inputAccEmail = document.getElementById("accEmail").value
 
-            inputAccRepeatPassword === inputAccPassword ? createAccount(inputAccUser, inputAccPassword, inputAccEmail) : alert("Las contraseñas no son coinciden.")
+            inputAccRepeatPassword === inputAccPassword ? createAccount(inputAccUser, inputAccPassword, inputAccEmail) : swal("", "Las contraseñas no son coinciden.", "error")
         }
     })
 }
@@ -90,8 +90,16 @@ authOverlay.addEventListener("click", (e) => {
 })
 
 productOverlay.addEventListener("click", () => toggleDisplayNone(productOverlay))
-btnAccount.addEventListener("click", () => logedUser ? alert("Ya estas logeado!") : toggleDisplayNone(authOverlay, renderAuthForm(true)))
-btnShowCartOverlay.addEventListener("click", () => logedUser ? toggleDisplayNone(cartOverlay, renderCartItems) : alert("Inicia sesion para ver tu carrito"))
+btnAccount.addEventListener("click", () => {
+    if(isUserLoged()) {
+        swal("", "Ya estas logeado!", "info", {buttons: ["Cerrar sesion", "OK"]})
+            .then(value => value || logoffAccount())
+    } else {
+        toggleDisplayNone(authOverlay, renderAuthForm(true))
+    }
+})
+
+btnShowCartOverlay.addEventListener("click", () => isUserLoged() ? toggleDisplayNone(cartOverlay, renderCartItems) : swal("", "Inicia sesion para ver tu carrito", "info"))
 btnHideCartOverlay.addEventListener("click", () => toggleDisplayNone(cartOverlay))
 
 authFormCont.addEventListener("click", (e) => e.stopPropagation())

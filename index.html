@@ -14,7 +14,10 @@
 
         <link href='https://fonts.googleapis.com/css?family=Comforter' rel='stylesheet'>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+        <script defer src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script defer src="./js/vars.js"></script>
         <script defer src="./js/classes.js"></script>
         <script defer src="./js/user.js"></script>
@@ -43,7 +46,7 @@
 
                 <div id="btnShowCartOverlay" class="header__cart buttons">
                     <i class="material-icons">shopping_cart</i>
-                    <span>CARRITO</span>
+                    <span id="btnCartText">CARRITO</span>
                     <div id="cartOverlay" class="header__cart__overlay displaynone">
                         <input id="btnHideCartOverlay" class="header__cart__overlay__button buttons material-icons" type="button" value="&#xe14c;">
                         <div id="cartItemsCont" class="header__cart__overlay__itemscont">

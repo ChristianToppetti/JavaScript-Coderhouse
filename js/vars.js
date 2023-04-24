@@ -3,6 +3,8 @@ const productsArray = []
 const filtersArray = []
 
 const btnAccount = document.getElementById("btnAccount")
+const btnAccountText = document.getElementById("btnAccountText")
+const btnCartText = document.getElementById("btnCartText")
 const authOverlay = document.getElementById("authOverlay")
 const authFormCont = document.getElementById("authFormCont")
 

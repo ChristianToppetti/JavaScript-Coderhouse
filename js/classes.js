@@ -8,14 +8,25 @@ class User {
     addToCart(item) {
         this.cart.push(item)
         this.saveUser()
+        this.updateUserCartBtn()
+
+        Toastify({
+            text: `${item.product.name} se agrego al carrito.`,
+            duration: 3000
+        }).showToast();
     }
     removeFromCart(index) {
         index = parseInt(index.replace("cartIndex", "")) 
         this.cart.splice(index, 1)
         this.saveUser()
+        this.updateUserCartBtn()
+    }
+    updateUserCartBtn() {
+        let cartLen = this.cart.length
+        btnCartText.textContent = `CARRITO (${cartLen ? cartLen : 0})`
     }
     saveUser() {
-        localStorage.setItem("USER", JSON.stringify(this)) 
+        localStorage.setItem("ACCOUNT", JSON.stringify(this)) 
     }
 }
 

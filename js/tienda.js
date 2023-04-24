@@ -41,8 +41,13 @@ const getActiveFilters = () => {
   return activeFilters
 }
 
-const loadUser = (username, password, email, cart) => logedUser = new User(username, password, email, cart)
+const loadUser = (username, password, email, cart) => {
+  logedUser = new User(username, password, email, cart)
+  logedUser.updateUserCartBtn()
+}
+
 const loadTagFilter = (filter, group, contHtml, itsRadio=false) => filtersArray.push(new CheckboxTagFilter(filter, group, contHtml, itsRadio))
+
 const loadProduct = (id, name, type, price, sizes, colors, imgfolder, extraTags) => productsArray.push(new Product(id, name, type, price, sizes, colors, imgfolder, extraTags))
 
 const toggleDisplayNone = (element, callback) => {
@@ -88,24 +93,26 @@ const databaseSimulator = () => {
   loadTagFilter("Blanco", "COLORES", filtersCont)
 }
 
-
 async function loadDb() {
-  //databaseSimulator()
-  await fetch(`../db/products.json`)
+  await fetch(`../json/products.json`)
     .then(res => res.json())
     .then(objArr => objArr.forEach((obj, i) => {
       loadProduct(i, obj.name, obj.type, obj.price, obj.sizes, obj.colors, obj.imgFolder, obj.extraTags)
     }))
 
-  await fetch(`../db/filters.json`)
+  await fetch(`../json/filters.json`)
     .then(res => res.json())
     .then(objArr => objArr.forEach(obj => {
         loadTagFilter(obj.tag, obj.group, filtersCont, obj.itsRadio)
     }))
+}
 
+async function initSimulator() {
+  await loadDb()
+  loadAutoLogin()
   showCheckboxFilters()
   showProducts()
 }
 
-window.addEventListener("load", () => loadDb())
+window.addEventListener("load", () => initSimulator())
 
