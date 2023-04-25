@@ -22,22 +22,36 @@ const setAutologin = (user, pass) => {
 }
 
 const removeAutologin = () => sessionStorage.removeItem("AUTOLOGIN")
-  
-const createAccount = (username, password, email) => {
-    let newUser = new User(username, password, email, [])
-    localStorage.setItem("ACCOUNT", JSON.stringify(newUser)) 
-    toggleDisplayNone(authOverlay)
-    swal("Listo!", "Registrado con exito!", "success")
-}
 
 const logoffAccount = () => {
     removeAutologin()
-    
+    location.reload()
+}
+
+const getAccount = (username) => {
+    let accName = `ACC${username.trim().toUpperCase()}`
+    let acc = localStorage.getItem(accName)
+    return JSON.parse(acc)
+}
+
+const createAccount = (username, password, email) => {
+    let newUser = new User(username, password, email, [])
+    let accName = `ACC${username.trim().toUpperCase()}`
+
+    if(!getAccount(username)) {
+        newUser.saveAcc()
+        toggleDisplayNone(authOverlay)
+        swal("Listo!", "Registrado con exito!", "success")
+        return
+    }
+
+    swal("Hubo un problema!", "El nombre de usuario ya esta en uso", "error")
 }
 
 const loginAccount = (username, password, remember=false) => {
-    let savedUser = JSON.parse(localStorage.getItem("ACCOUNT"))
+    let savedUser = getAccount(username)
     if(!savedUser) {
+        swal("Hubo un problema!", "La cuenta no existe", "error");
         return false
     }
 
@@ -47,6 +61,8 @@ const loginAccount = (username, password, remember=false) => {
         remember && setAutologin(username, password)
         return true
     }
+
+    swal("Hubo un problema!", "Datos no validos", "error");
     return false
 }
 
@@ -55,31 +71,29 @@ const renderAuthForm = (login=false) => {
     
     let authForm = document.createElement("form")
     authForm.enctype = "text/plain"
+    authForm.className = "header__account__overlaycont__form"
+    authForm.id = "authForm"
 
     if(login) {
       authForm.innerHTML = `
-      <fieldset class="header__account__overlaycont__form">
         <legend>Iniciar Sesion</legend>
         <input class="header__account__overlaycont__form__input" placeholder="Usuario" type="text" name="accUser" id="accUser" required>
         <input class="header__account__overlaycont__form__input" placeholder="Contraseña" type="password" name="accPassword" id="accPassword" required>
         <div>
             <input type="checkbox" id="cbRememberLogin">
-            <label for="cbRememberLogin">Recordar</label>
+            <label for="cbRememberLogin">Recordarme</label>
         </div>
-        <input id="btnAuthSubmit" class="buttons" type="submit" value="INICIAR">
-        <div>Es tu primera vez en Indra? <a href="#" id="btnAuthSwitch">Registrarse</a></div>
-      </fieldset>`
+        <input class="buttons" type="submit" value="INICIAR">
+        <div>Es tu primera vez en Indra? <a href="#" id="btnAuthSwitch" style="text-decoration:underline;color:#d81919">Registrarse</a></div>`
     } else {
       authForm.innerHTML = `
-      <fieldset class="header__account__overlaycont__form">
-        <legend>Registrarse</legend>
+        <strong>Registrarse</strong>
         <input class="header__account__overlaycont__form__input" placeholder="Usuario" type="text" name="accUser" id="accUser" required>
         <input class="header__account__overlaycont__form__input" placeholder="Contraseña" type="password" name="accPassword" id="accPassword" required>
         <input class="header__account__overlaycont__form__input" placeholder="Repetir contraseña" type="password" name="accRepeatPassword" id="accRepeatPassword" required>
         <input class="header__account__overlaycont__form__input" placeholder="Correo electronico" type="email" name="accEmail" id="accEmail" required>
-        <input id="btnAuthSubmit" class="buttons" type="submit" value="REGISTRARSE">
-        <div>Ya tienes cuenta? <a href="#" id="btnAuthSwitch">Iniciar sesión</a></div>
-      </fieldset>`
+        <input class="buttons" type="submit" value="REGISTRARSE">
+        <div>Ya tienes cuenta? <a href="#" id="btnAuthSwitch" style="text-decoration:underline;color:#d81919">Iniciar sesión</a></div>`
     }
 
     authFormCont.append(authForm)

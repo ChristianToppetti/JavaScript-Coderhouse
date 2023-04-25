@@ -45,30 +45,29 @@ const btnAddToCartEvent = (ojbProduct) => {
 
 const listenAuthEvents = (login) => {
     let btnAuthSwitch = document.getElementById("btnAuthSwitch")
-    let btnAuthSubmit = document.getElementById("btnAuthSubmit")
+    let authForm = document.getElementById("authForm")
   
     btnAuthSwitch.addEventListener("click", () => renderAuthForm(login ? false : true))
 
-    btnAuthSubmit.addEventListener("click", (e) => {
+    authForm.addEventListener("submit", (e) => {
         e.preventDefault()
 
         let inputAccUser = document.getElementById("accUser").value
         let inputAccPassword = document.getElementById("accPassword").value
-        let rememberCheckbox = document.getElementById("cbRememberLogin").checked
-
+        
         if(login) {
-            if(loginAccount(inputAccUser, inputAccPassword, rememberCheckbox)) {
-                toggleDisplayNone(authOverlay)
+            let rememberCheckbox = document.getElementById("cbRememberLogin").checked
+
+            if(loginAccount(inputAccUser, inputAccPassword, rememberCheckbox)) { 
+                toggleDisplayNone(authOverlay) 
                 swal("Bienvenido!", "Logeado con exito!", "success");
-            } else {
-                swal("Hubo un problema!", "Datos no validos", "error");
-            }
+            } 
         } 
         else {
             let inputAccRepeatPassword = document.getElementById("accRepeatPassword").value
             let inputAccEmail = document.getElementById("accEmail").value
-
-            inputAccRepeatPassword === inputAccPassword ? createAccount(inputAccUser, inputAccPassword, inputAccEmail) : swal("", "Las contraseñas no son coinciden.", "error")
+            let itsValid = (inputAccRepeatPassword === inputAccPassword)
+            itsValid ? createAccount(inputAccUser, inputAccPassword, inputAccEmail) : swal("", "Las contraseñas no son coinciden.", "error")
         }
     })
 }

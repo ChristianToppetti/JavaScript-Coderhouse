@@ -25,8 +25,9 @@ class User {
         let cartLen = this.cart.length
         btnCartText.textContent = `CARRITO (${cartLen ? cartLen : 0})`
     }
-    saveUser() {
-        localStorage.setItem("ACCOUNT", JSON.stringify(this)) 
+    saveAcc() {
+        let accName = `ACC${this.username.trim().toUpperCase()}`
+        localStorage.setItem(accName, JSON.stringify(this))
     }
 }
 
