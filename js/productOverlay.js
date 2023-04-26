@@ -3,7 +3,7 @@ const createThumbnails = (imgFolder) => {
   
   for(let i=0; i < maxThumbnails; i++) {
     let img = document.createElement("img")
-    img.src = `../multimedia/Items/${imgFolder}/Item${i}.webp`
+    img.src = `./multimedia/Items/${imgFolder}/Item${i}.webp`
     img.alt = "IMG"
 
     itemThumbnailsCont.append(img)
@@ -109,7 +109,7 @@ const createProductOverlay = (product) => {
   setSelectedSize(product.sizes[0])
 
   createThumbnails(product.imgFolder)
-  let path = `../multimedia/Items/${product.imgFolder}/Item0.webp`
+  let path = `./multimedia/Items/${product.imgFolder}/Item0.webp`
   createMainImg(path)
   createItemInfo(product.name)
   createItemPaymentInf(product.price)

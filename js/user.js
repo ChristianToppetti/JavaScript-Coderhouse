@@ -125,7 +125,7 @@ const renderCartItems = () => {
         cartItem.className = "header__cart__overlay__itemscont__item shadow"
         
         cartItem.innerHTML += `
-            <div class="itemimg"><img src="../multimedia/Items/${item.product.imgFolder}/Item0.webp" alt="IMG"></div>
+            <div class="itemimg"><img src="./multimedia/Items/${item.product.imgFolder}/Item0.webp" alt="IMG"></div>
             <div class="itemname">${item.product.name}</div>
             <div class="itemdetails">
                 <div>TALLE <br><strong>${item.chosenSize}</strong></div>

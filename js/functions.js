@@ -61,13 +61,13 @@ const toggleDisplayNone = (element, callback) => {
 const hideCartOverlay = () => cartOverlay.classList.contains("displaynone") || cartOverlay.classList.add("displaynone")
 
 async function loadDb() {
-  await fetch(`../json/products.json`)
+  await fetch(`./json/products.json`)
     .then(res => res.json())
     .then(objArr => objArr.forEach((obj, i) => {
       loadProduct(i, obj.name, obj.type, obj.price, obj.sizes, obj.colors, obj.imgFolder, obj.extraTags)
     }))
 
-  await fetch(`../json/filters.json`)
+  await fetch(`./json/filters.json`)
     .then(res => res.json())
     .then(objArr => objArr.forEach(obj => {
         loadTagFilter(obj.tag, obj.group, filtersCont, obj.itsRadio)

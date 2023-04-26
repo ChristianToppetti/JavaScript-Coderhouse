@@ -62,7 +62,7 @@ class Product {
         <h3 class="shopitem__nametag">${this.name.toUpperCase().replace("tag", "")}</h3>
 
         <div class="shopitem__img">
-        <img src="../multimedia/Items/${this.imgFolder}/Item0.webp" alt="IMG">
+        <img src="./multimedia/Items/${this.imgFolder}/Item0.webp" alt="IMG">
         <a id="${this.id}" class="shopitem__img__btn" href="#">VER MAS</a>
         </div>
 
