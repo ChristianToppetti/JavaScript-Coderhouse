@@ -13,6 +13,7 @@ const btnHideCartOverlay = document.getElementById("btnHideCartOverlay")
 const btnBuyCart = document.getElementById("btnBuyCart")
 const cartOverlay = document.getElementById("cartOverlay")
 const cartItemsCont = document.getElementById("cartItemsCont")
+const cartTotalPrice = document.getElementById("cartTotalPrice")
 
 const productOverlay = document.getElementById("productOverlay")
 const productCont = document.getElementById("productCont")
@@ -23,3 +24,5 @@ const itemInfoCont = document.getElementById("itemInfoCont")
 
 const shopItemsCont = document.getElementById("shopItemsCont")
 const filtersCont = document.getElementById("sidebarMenu")
+
+const footerNewsletter = document.getElementById("footerNewsletter")

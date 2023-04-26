@@ -7,18 +7,25 @@ class User {
     }
     addToCart(item) {
         this.cart.push(item)
-        this.saveUser()
+        this.saveAcc()
         this.updateUserCartBtn()
 
         Toastify({
             text: `${item.product.name} se agrego al carrito.`,
-            duration: 3000
+            duration: 1500,
+            stopOnFocus: false,
+            oldestFirst: true,
+            style: {
+                "box-shadow": "none",
+                "margin-top": "3.5rem",
+                "background": "#01613e"
+            },
         }).showToast();
     }
     removeFromCart(index) {
         index = parseInt(index.replace("cartIndex", "")) 
         this.cart.splice(index, 1)
-        this.saveUser()
+        this.saveAcc()
         this.updateUserCartBtn()
     }
     updateUserCartBtn() {

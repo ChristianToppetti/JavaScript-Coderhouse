@@ -21,7 +21,7 @@
         <script defer src="./js/vars.js"></script>
         <script defer src="./js/classes.js"></script>
         <script defer src="./js/user.js"></script>
-        <script defer src="./js/tienda.js"></script>
+        <script defer src="./js/functions.js"></script>
         <script defer src="./js/productOverlay.js"></script>
         <script defer src="./js/events.js"></script>
     </head>
@@ -39,7 +39,7 @@
                     
                     <div id="authOverlay" class="header__account__overlay displaynone">
                         <div id="authFormCont" class="header__account__overlaycont shadow">
-                        
+                            <!-- AUTO FORM -->
                         </div>
                     </div>
                 </div> 
@@ -51,7 +51,8 @@
                         <input id="btnHideCartOverlay" class="header__cart__overlay__button buttons material-icons" type="button" value="&#xe14c;">
                         <div id="cartItemsCont" class="header__cart__overlay__itemscont">
                             <!-- CART ITEMS -->
-                        </div>                        
+                        </div>
+                        <div id="cartTotalPrice" class="header__cart__overlay__totalprice"></div>                 
                         <input id="btnBuyCart" class="header__cart__overlay__button buttons" type="button" value="CONTINUAR CON LA COMPRA">
                     </div>
                 </div> 
@@ -99,9 +100,7 @@
                 </section>
 
                 <section id="productOverlay" class="main-tienda__product displaynone">
-                    <div id="exitOverlayMobile" class="main-tienda__product__mobileback">
-                        <
-                    </div>
+                    <h3 class="main-tienda__product__mobileback buttons">CERRAR</h3>
                     <div id="productCont" class="card">
                         <div class="main-tienda__product__gallery">
                             <div id="itemThumbnailsCont" class="main-tienda__product__gallery__thumbnails">
@@ -146,7 +145,7 @@
                         </li>
 
                         <li>
-                            <a class="textbtn" href="devolucion.html">
+                            <a class="textbtn" href="#">
                                 <i class="material-icons">library_books</i>
                                 <p>POLITICAS DE DEVOLUCION</p> 
                             </a>
@@ -182,9 +181,9 @@
                 <section> <!-- NEWSLETTER -->
                     <h4 class="separator">NEWSLETTER</h4>
 
-                    <form class="footer__itemscont" action="#" method="GET" enctype="text/plain">
+                    <form id="footerNewsletter" class="footer__itemscont" enctype="text/plain">
                         <fieldset class="footer_newsletter">
-                            <legend>Suscribite a nuestro Newsettler</legend>
+                            <legend>Suscribite a nuestro Newsletter</legend>
                             <input placeholder="Nombre" type="text" name="name" id="name" required>
                             <input placeholder="Correo Electronico" type="email" name="email" id="email" required>
                             <input class="buttons" type="submit" value="Suscribirse">

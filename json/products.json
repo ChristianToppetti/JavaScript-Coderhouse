@@ -1,5 +1,5 @@
 [{
-    "name":"Vestido Rayado",
+    "name":"Vestido de tie dye con nudo delantero",
     "type":"VESTIDO",
     "price":9000.99,
     "sizes":["S","M","L","X","XL","XLL"],
@@ -7,11 +7,115 @@
     "imgFolder":"vestidorayado",
     "extraTags":["proyecto final"]
 },{
-    "name":"Zapas Rayado",
+    "name":"Remera con botón Liso Casual",
+    "type":"REMERA",
+    "price":8230.29,
+    "sizes":["S","M","L"],
+    "colors":["ROJO","AZUL"],
+    "imgFolder":"remeraboton",
+    "extraTags":[""]
+},{
+    "name":"Botas de nieve térmico",
     "type":"CALZADO",
-    "price":9000.99,
-    "sizes":["S","M","L","X","XL","XLL"],
-    "colors":["ROJO","AZUL","NEGRO","BLANCO"],
-    "imgFolder":"Test4",
+    "price":9559.99,
+    "sizes":["S","M","L","X"],
+    "colors":["NEGRO"],
+    "imgFolder":"botasnievetermico",
+    "extraTags":[""]
+},{
+    "name":"Remera de rayas con bolsillo delantero",
+    "type":"REMERA",
+    "price":7799.99,
+    "sizes":["X","XL","XLL"],
+    "colors":["NEGRO","BLANCO"],
+    "imgFolder":"remerasrayasbolsillo",
+    "extraTags":[""]
+},{
+    "name":"Vestido con estampado floral",
+    "type":"VESTIDO",
+    "price":9920.20,
+    "sizes":["M","X","XL","XLL"],
+    "colors":["ROJO","AZUL"],
+    "imgFolder":"vestidofloral",
+    "extraTags":[""]
+},{
+    "name":"Sandalias floral con diseño de tachuela",
+    "type":"CALZADO",
+    "price":8600.75,
+    "sizes":["S","X","XLL"],
+    "colors":["NEGRO"],
+    "imgFolder":"sandaliasfloral",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"VESTIDO",
+    "price":3333.33,
+    "sizes":["S","M"],
+    "colors":["ROJO","NEGRO"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"VESTIDO",
+    "price":3333.33,
+    "sizes":["L","X"],
+    "colors":["AZUL","NEGRO"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"VESTIDO",
+    "price":3333.33,
+    "sizes":["S","XL","XLL"],
+    "colors":["ROJO","BLANCO"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"CALZADO",
+    "price":3333.33,
+    "sizes":["S","M"],
+    "colors":["ROJO","NEGRO", "AZUL"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"CALZADO",
+    "price":3333.33,
+    "sizes":["L","X"],
+    "colors":["AZUL","BLANCO"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"CALZADO",
+    "price":3333.33,
+    "sizes":["S","L","XLL"],
+    "colors":["AZUL","BLANCO"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"REMERA",
+    "price":3333.33,
+    "sizes":["S","M","XL"],
+    "colors":["ROJO","NEGRO", "AZUL"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"REMERA",
+    "price":3333.33,
+    "sizes":["L","X","XLL"],
+    "colors":["AZUL","BLANCO"],
+    "imgFolder":"test",
+    "extraTags":[""]
+},{
+    "name":"Producto Ejemplo",
+    "type":"REMERA",
+    "price":3333.33,
+    "sizes":["M","L","X","XLL"],
+    "colors":["AZUL","BLANCO"],
+    "imgFolder":"test",
     "extraTags":[""]
 }]

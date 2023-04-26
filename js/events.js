@@ -38,7 +38,7 @@ const btnAddToCartEvent = (ojbProduct) => {
             chosenSize: getSelectedSize(),
             chosenColor: getSelectedColor()
         }
-        let userName = logedUser.userName
+
         isUserLoged() ? logedUser.addToCart(cartItem) : swal("", "Inicia sesion para agregar productos al carrito", "info")
     })
 }
@@ -47,14 +47,19 @@ const listenAuthEvents = (login) => {
     let btnAuthSwitch = document.getElementById("btnAuthSwitch")
     let authForm = document.getElementById("authForm")
   
-    btnAuthSwitch.addEventListener("click", () => renderAuthForm(login ? false : true))
+    btnAuthSwitch.addEventListener("click", () => login? renderAuthRegister() : renderAuthLogin())
 
     authForm.addEventListener("submit", (e) => {
         e.preventDefault()
-
-        let inputAccUser = document.getElementById("accUser").value
-        let inputAccPassword = document.getElementById("accPassword").value
+        e.stopPropagation()
         
+        let inputAccUser = document.getElementById("accUser").value.trim()
+        let inputAccPassword = document.getElementById("accPassword").value
+        if(!inputAccUser) {
+            swal("", "Introduzca un nombre de usuario valido.", "error")
+            return
+        }
+
         if(login) {
             let rememberCheckbox = document.getElementById("cbRememberLogin").checked
 
@@ -89,18 +94,39 @@ authOverlay.addEventListener("click", (e) => {
 })
 
 productOverlay.addEventListener("click", () => toggleDisplayNone(productOverlay))
+
 btnAccount.addEventListener("click", () => {
     if(isUserLoged()) {
-        swal("", "Ya estas logeado!", "info", {buttons: ["Cerrar sesion", "OK"]})
-            .then(value => value || logoffAccount())
+        swal("", "Ya estas logeado!", "info", {button: "Cerrar sesion"})
+            .then(value => value && logoffAccount())
     } else {
-        toggleDisplayNone(authOverlay, renderAuthForm(true))
+        toggleDisplayNone(authOverlay, renderAuthLogin)
     }
 })
 
+footerNewsletter.addEventListener("submit", (e) => {
+    e.preventDefault()
+    swal("", "Te subscribiste al Newsletter con exito", "success")
+})
+
 btnShowCartOverlay.addEventListener("click", () => isUserLoged() ? toggleDisplayNone(cartOverlay, renderCartItems) : swal("", "Inicia sesion para ver tu carrito", "info"))
+
 btnHideCartOverlay.addEventListener("click", () => toggleDisplayNone(cartOverlay))
 
+btnBuyCart.addEventListener("click", () => {
+    if(logedUser.cart == "") { 
+        swal("", "El carrito esta vacio", "error")
+        return
+    }
+
+    swal("Gracias por tu compra!", "Fin del simulador :)", "success")
+    toggleDisplayNone(cartOverlay)
+})
+
 authFormCont.addEventListener("click", (e) => e.stopPropagation())
+
 cartOverlay.addEventListener("click", (e) => e.stopPropagation())
+
 productCont.addEventListener("click", (e) => e.stopPropagation())
+
+window.addEventListener("load", () => initSimulator())

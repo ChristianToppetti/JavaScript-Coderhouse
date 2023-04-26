@@ -66,7 +66,11 @@ const loginAccount = (username, password, remember=false) => {
     return false
 }
 
-const renderAuthForm = (login=false) => {
+const renderAuthLogin = () => renderAuthForm(true)
+
+const renderAuthRegister = () => renderAuthForm(false)
+
+const renderAuthForm = (login) => {
     authFormCont.innerHTML = ""
     
     let authForm = document.createElement("form")
@@ -98,6 +102,7 @@ const renderAuthForm = (login=false) => {
 
     authFormCont.append(authForm)
     listenAuthEvents(login)
+    return authFormCont
 }
   
 const renderCartItems = () => {
@@ -110,9 +115,11 @@ const renderCartItems = () => {
         cartItem.innerHTML = `<h3 style="margin-top:1rem;">Carrito vacio...</h3>`
 
         cartItemsCont.append(cartItem)
+        cartTotalPrice.textContent = "Total: 0"
         return
     }
 
+    let totalPrice = 0
     logedUser.cart.forEach((item, i) => {
         let cartItem = document.createElement("div")
         cartItem.className = "header__cart__overlay__itemscont__item shadow"
@@ -123,12 +130,15 @@ const renderCartItems = () => {
             <div class="itemdetails">
                 <div>TALLE <br><strong>${item.chosenSize}</strong></div>
                 <div>COLOR <br><strong>${item.chosenColor}</strong></div>
-                <div>PRECIO<br><strong>${item.product.price}</strong></div>
+                <div>PRECIO<br><strong>$${item.product.price}</strong></div>
             </div>
             <div id="cartIndex${i}" class="itemremove"><i class="material-icons">&#xe14c;</i></div>`
 
         cartItemsCont.append(cartItem)
+        totalPrice += item.product.price
     })
+
+    cartTotalPrice.textContent = `Total: $${totalPrice.toFixed(2)}`
     listenCartItemsEvents()
 }
 
