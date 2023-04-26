@@ -36,7 +36,6 @@ const getAccount = (username) => {
 
 const createAccount = (username, password, email) => {
     let newUser = new User(username, password, email, [])
-    let accName = `ACC${username.trim().toUpperCase()}`
 
     if(!getAccount(username)) {
         newUser.saveAcc()
